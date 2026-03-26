@@ -155,7 +155,7 @@
 
 <script>
   const API_URL = 'https://script.google.com/macros/s/AKfycbx1985s2s5ICLAu2UUuG_H72Ixk5iTJmv77v0TLeYOxs-rHOgERoSaC0WDWiemHbENE_Q/exec';
-  const CACHE_KEY = 'zappos_travel_data_v7'; 
+  const CACHE_KEY = 'zappos_travel_data_v8'; 
   const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfttLnyQ8kE-qswLfN55T-obsHWJ5ev_o3o7cu8pUOVRnHQMA/viewform';
 
   async function fetchTravelData() {
@@ -214,10 +214,14 @@
       if (trip.remaining > 0 && trip.remaining <= 3 && !trip.status.includes('額滿')) {
         groupedTrips["🔥 最後上車機會"].push(trip);
       }
-      let monthKey = "待定行程";
+let monthKey = "待定行程";
       if (trip.startDate) {
         let d = new Date(trip.startDate);
-        monthKey = `${d.getFullYear()}年${String(d.getMonth() + 1).padStart(2, '0')}月`;
+        // 改為只顯示月份，例如「06月」
+        monthKey = `${d.getMonth() + 1}月`; 
+        
+        // 💡 隱藏玩法：如果想加前面的 0 (變成「06月」而不是「06月」)，
+        // 可以直接改成這行：monthKey = `${String(d.getMonth() + 1).padStart(2, '0')}月`; 
       }
       if (!groupedTrips[monthKey]) groupedTrips[monthKey] = [];
       groupedTrips[monthKey].push(trip);
