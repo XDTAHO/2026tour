@@ -11,39 +11,46 @@
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap');
   body { font-family: 'Noto Sans TC', sans-serif; background-color: transparent; margin: 0; padding: 0; color: #2d3748; overflow-x: hidden; }
   
-  /* 🔥 優化：單行橫向滑動導航列 */
+  /* 🔥 頁首設計 (Header) */
+  .site-header {
+    text-align: center;
+    padding: 25px 15px 15px 15px;
+    background: #ffffff;
+  }
+  .site-header h1 {
+    font-size: 1.5em;
+    color: #1a202c;
+    margin: 0;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+  }
+
+  /* 單行橫向滑動導航列 */
   .sticky-nav {
     position: sticky; top: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px);
-    z-index: 100; padding: 12px 10px; display: flex; 
-    flex-wrap: nowrap; /* 強制不折行 */
-    overflow-x: auto;  /* 允許橫向滑動 */
-    -webkit-overflow-scrolling: touch; /* 手機滑動更順暢 */
-    justify-content: flex-start; /* 靠左對齊 */
-    gap: 8px; border-bottom: 1px solid #e2e8f0; margin-bottom: 20px;
-    -ms-overflow-style: none; scrollbar-width: none; /* 隱藏捲軸 */
+    z-index: 100; padding: 12px 10px; display: flex; flex-wrap: nowrap; overflow-x: auto; 
+    -webkit-overflow-scrolling: touch; justify-content: flex-start; gap: 8px; 
+    border-bottom: 1px solid #e2e8f0; margin-bottom: 20px; -ms-overflow-style: none; scrollbar-width: none;
   }
   .sticky-nav::-webkit-scrollbar { display: none; }
   
-  /* 🔥 新增：主揪專屬發起按鈕 */
+  /* 主揪專屬發起按鈕 */
   .nav-btn-special {
-    padding: 6px 16px; background: #226b80; /* 搭配您截圖中的深藍綠色 */
-    border-radius: 15px; color: #ffffff; font-weight: 900;
-    white-space: nowrap; font-size: 0.85em; text-decoration: none;
-    display: inline-flex; align-items: center; flex-shrink: 0; /* 防止被擠壓 */
-    box-shadow: 0 2px 6px rgba(34, 107, 128, 0.4); transition: all 0.2s;
+    padding: 6px 16px; background: #226b80; border-radius: 15px; color: #ffffff; font-weight: 900;
+    white-space: nowrap; font-size: 0.85em; text-decoration: none; display: inline-flex; align-items: center; 
+    flex-shrink: 0; box-shadow: 0 2px 6px rgba(34, 107, 128, 0.4); transition: all 0.2s;
   }
   .nav-btn-special:hover { background: #1a5363; transform: translateY(-1px); }
 
   /* 一般月份導航按鈕 */
   .nav-btn {
     padding: 6px 14px; background: #edf2f7; border-radius: 15px; color: #4a5568;
-    font-weight: 700; white-space: nowrap; transition: all 0.2s; font-size: 0.85em; 
-    cursor: pointer; border: none; flex-shrink: 0; /* 防止被擠壓 */
+    font-weight: 700; white-space: nowrap; transition: all 0.2s; font-size: 0.85em; cursor: pointer; border: none; flex-shrink: 0;
   }
   .nav-btn:hover, .nav-btn.active { background: #2d3748; color: #ffffff; }
 
   /* 折疊區塊 (Accordion) */
-  details { margin: 0 5px 25px 5px; background: #ffffff; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.03); border: 1px solid #edf2f7; scroll-margin-top: 100px; }
+  details { margin: 0 10px 25px 10px; background: #ffffff; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.03); border: 1px solid #edf2f7; scroll-margin-top: 100px; }
   summary { padding: 15px 20px; font-size: 1.2em; font-weight: 900; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: #1a202c; }
   summary::-webkit-details-marker { display: none; }
   summary::after { content: '▼'; font-size: 0.7em; color: #a0aec0; transition: transform 0.3s; }
@@ -72,7 +79,7 @@
   .agency-tag { font-size: 0.75em; color: #6c757d; font-weight: 700; margin-bottom: 5px; line-height: 1.3; }
   .title { font-size: 1.15em; font-weight: 900; margin: 0 0 12px 0; line-height: 1.3; }
 
-  /* 左右雙欄佈局 (左資訊、右按鈕) */
+  /* 左右雙欄佈局 */
   .info-action-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin-bottom: 15px; }
   .info-col { flex-grow: 1; display: flex; flex-direction: column; gap: 8px; }
   .details-text { font-size: 0.85em; color: #4a5568; line-height: 1.6; margin: 0; }
@@ -80,7 +87,7 @@
   .side-price-value { font-size: 1.5em; font-weight: 900; color: #e53e3e; margin: 0; line-height: 1; }
   .side-price-unit { font-size: 0.6em; color: #718096; }
 
-  /* 右側：直式按鈕堆疊區塊 */
+  /* 右側按鈕 */
   .action-col { display: flex; flex-direction: column; gap: 6px; width: 85px; flex-shrink: 0; }
   .btn { 
     width: 100%; text-align: center; padding: 7px 0; border-radius: 6px; text-decoration: none; 
@@ -95,12 +102,11 @@
   .btn-line:hover { background: #05a546; }
   .btn:disabled, .btn.disabled { background: #a0aec0; color: #fff; pointer-events: none; opacity: 0.7; }
 
-  /* 進度條與全新微型標籤設計 */
+  /* 進度條與微型標籤 */
   .progress-section { margin-top: auto; padding-top: 12px; border-top: 1px dashed #e2e8f0; }
   .progress-bar-bg { background: #edf2f7; border-radius: 10px; height: 6px; width: 100%; margin-bottom: 6px; overflow: hidden;}
   .progress-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, #4299e1 0%, #3182ce 100%); transition: width 0.5s ease-in-out;}
   .progress-fill.full { background: #e53e3e; }
-  
   .stats { display: flex; justify-content: space-between; align-items: center; font-size: 0.75em; color: #718096; font-weight: 700; }
   .stat-left { display: flex; align-items: center; gap: 6px; }
   .emp-badge { background: #f7fafc; color: #4a5568; padding: 2px 6px; border-radius: 6px; font-size: 0.85em; display: inline-flex; align-items: center; border: 1px solid #e2e8f0; font-weight: 700; }
@@ -109,18 +115,47 @@
   .highlight-section summary { color: #e65100; font-size: 1.1em; }
   .highlight-section summary::before { content: '🔥 '; }
   .loader { text-align: center; padding: 40px; font-size: 1.1em; color: #4a5568; font-weight: 700; }
+
+  /* 🔥 頁尾設計 (Footer) */
+  .site-footer {
+    margin-top: 40px;
+    padding: 30px 20px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    color: #718096;
+    font-size: 0.85em;
+    line-height: 1.8;
+    text-align: center;
+  }
+  .site-footer h4 {
+    color: #4a5568;
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+  }
+  .site-footer p {
+    margin: 0 auto;
+    max-width: 800px;
+  }
 </style>
 </head>
 <body>
+
+<header class="site-header">
+  <h1>2026 達和跨單位旅遊揪團情報測試站</h1>
+</header>
 
 <div id="nav-container" class="sticky-nav" style="display: none;"></div>
 <div id="loader" class="loader">✈️ 正在彙整達和旅遊型錄...</div>
 <div id="main-content"></div>
 
+<footer class="site-footer">
+  <h4>🚩 關於 達和跨單位旅遊揪團情報站</h4>
+  <p>本站為同仁自主發起之內部資訊交流平台，非達和官方正式建置之網站。站內所有行程資訊均由各單位主揪即時發佈與自主維護，實際報名狀況與最終優惠價請以主揪回覆為準。提醒您，發起或參與各項揪團活動，請務必依循公司相關規範與決策程序辦理。歡迎多加利用本平台，輕鬆探索跨單位交流機會！</p>
+</footer>
+
 <script>
   const API_URL = 'https://script.google.com/macros/s/AKfycbx1985s2s5ICLAu2UUuG_H72Ixk5iTJmv77v0TLeYOxs-rHOgERoSaC0WDWiemHbENE_Q/exec';
-  const CACHE_KEY = 'zappos_travel_data_v6'; 
-  // 🔥 表單連結變數
+  const CACHE_KEY = 'zappos_travel_data_v7'; 
   const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfttLnyQ8kE-qswLfN55T-obsHWJ5ev_o3o7cu8pUOVRnHQMA/viewform';
 
   async function fetchTravelData() {
@@ -151,7 +186,11 @@
     const targetElement = document.getElementById(sectionId);
     if (targetElement) {
       targetElement.setAttribute('open', ''); 
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // 考量到有大標題，稍微調整滾動位置的平滑度
+      const headerOffset = 140; 
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
   }
 
@@ -187,7 +226,6 @@
     const navContainer = document.getElementById('nav-container');
     const mainContent = document.getElementById('main-content');
     
-    // 🔥 將「主揪發起」按鈕強制放在導航列的最前面
     let navHtml = `<a href="${FORM_URL}" target="_blank" class="nav-btn-special">📝 發起揪團</a>`;
     let contentHtml = '';
 
