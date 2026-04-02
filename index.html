@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026 達和[新店廠]旅遊揪團情報測試站</title>
+<title>2026 達和[新店廠]旅遊揪團情報站</title>
 <link rel="preconnect" href="https://script.google.com">
 <link rel="preconnect" href="https://script.googleusercontent.com">
 <style>
@@ -11,19 +11,9 @@
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap');
   body { font-family: 'Noto Sans TC', sans-serif; background-color: transparent; margin: 0; padding: 0; color: #2d3748; overflow-x: hidden; }
   
-  /* 🔥 頁首設計 (Header) */
-  .site-header {
-    text-align: center;
-    padding: 25px 15px 15px 15px;
-    background: #ffffff;
-  }
-  .site-header h1 {
-    font-size: 1.5em;
-    color: #1a202c;
-    margin: 0;
-    font-weight: 900;
-    letter-spacing: 0.5px;
-  }
+  /* 頁首設計 (Header) */
+  .site-header { text-align: center; padding: 25px 15px 15px 15px; background: #ffffff; }
+  .site-header h1 { font-size: 1.5em; color: #1a202c; margin: 0; font-weight: 900; letter-spacing: 0.5px; }
 
   /* 單行橫向滑動導航列 */
   .sticky-nav {
@@ -116,32 +106,19 @@
   .highlight-section summary::before { content: '🔥 '; }
   .loader { text-align: center; padding: 40px; font-size: 1.1em; color: #4a5568; font-weight: 700; }
 
-  /* 🔥 頁尾設計 (Footer) */
+  /* 頁尾設計 (Footer) */
   .site-footer {
-    margin-top: 40px;
-    padding: 30px 20px;
-    background: #f8fafc;
-    border-top: 1px solid #e2e8f0;
-    color: #718096;
-    font-size: 0.85em;
-    line-height: 1.8;
-    text-align: center;
+    margin-top: 40px; padding: 30px 20px; background: #f8fafc; border-top: 1px solid #e2e8f0;
+    color: #718096; font-size: 0.85em; line-height: 1.8; text-align: center;
   }
-  .site-footer h4 {
-    color: #4a5568;
-    margin: 0 0 10px 0;
-    font-size: 1.1em;
-  }
-  .site-footer p {
-    margin: 0 auto;
-    max-width: 800px;
-  }
+  .site-footer h4 { color: #4a5568; margin: 0 0 10px 0; font-size: 1.1em; }
+  .site-footer p { margin: 0 auto; max-width: 800px; }
 </style>
 </head>
 <body>
 
 <header class="site-header">
-  <h1>2026 達和[新店廠]旅遊揪團情報 測試中</h1>
+  <h1>2026 達和[新店廠]旅遊揪團情報站</h1>
 </header>
 
 <div id="nav-container" class="sticky-nav" style="display: none;"></div>
@@ -149,13 +126,13 @@
 <div id="main-content"></div>
 
 <footer class="site-footer">
-  <h4>🚩 關於 達和[新店廠]跨單位旅遊揪團情報站</h4>
+  <h4>🚩 關於 達和跨單位旅遊揪團情報站</h4>
   <p>本站為同仁自主發起之內部資訊交流平台，非達和官方正式建置之網站。站內所有行程資訊均由各單位主揪即時發佈與自主維護，實際報名狀況與最終優惠價請以主揪回覆為準。提醒您，發起或參與各項揪團活動，請務必依循公司相關規範與決策程序辦理。歡迎多加利用本平台，輕鬆探索跨單位交流機會！</p>
 </footer>
 
 <script>
   const API_URL = 'https://script.google.com/macros/s/AKfycbx1985s2s5ICLAu2UUuG_H72Ixk5iTJmv77v0TLeYOxs-rHOgERoSaC0WDWiemHbENE_Q/exec';
-  const CACHE_KEY = 'zappos_travel_data_v8'; 
+  const CACHE_KEY = 'zappos_travel_data_v9'; // 🔥 更新為 v9
   const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfttLnyQ8kE-qswLfN55T-obsHWJ5ev_o3o7cu8pUOVRnHQMA/viewform';
 
   async function fetchTravelData() {
@@ -186,7 +163,6 @@
     const targetElement = document.getElementById(sectionId);
     if (targetElement) {
       targetElement.setAttribute('open', ''); 
-      // 考量到有大標題，稍微調整滾動位置的平滑度
       const headerOffset = 140; 
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -214,14 +190,10 @@
       if (trip.remaining > 0 && trip.remaining <= 3 && !trip.status.includes('額滿')) {
         groupedTrips["🔥 最後上車機會"].push(trip);
       }
-let monthKey = "待定行程";
+      let monthKey = "待定行程";
       if (trip.startDate) {
         let d = new Date(trip.startDate);
-        // 改為只顯示月份，例如「06月」
-        monthKey = `${d.getMonth() + 1}月`; 
-        
-        // 💡 隱藏玩法：如果想加前面的 0 (變成「06月」而不是「06月」)，
-        // 可以直接改成這行：monthKey = `${String(d.getMonth() + 1).padStart(2, '0')}月`; 
+        monthKey = `${String(d.getMonth() + 1).padStart(2, '0')}月`; // 只顯示月份
       }
       if (!groupedTrips[monthKey]) groupedTrips[monthKey] = [];
       groupedTrips[monthKey].push(trip);
@@ -275,6 +247,11 @@ let monthKey = "待定行程";
     let btnClass = isFull ? 'btn-primary disabled' : 'btn-primary';
     let btnText = isFull ? '已截止' : '💌 詢問'; 
 
+    // 🔥 全新邏輯：判斷是 Email 還是 網址連結
+    let isContactUrl = /^https?:\/\//i.test(trip.contact);
+    let inquireHref = isContactUrl ? trip.contact : `mailto:${trip.contact}?subject=詢問達和內部旅遊報價：${trip.shortTitle}`;
+    let inquireTarget = isContactUrl ? `target="_blank"` : ``;
+
     let lineBtnHtml = '';
     if (trip.lineGroup && !trip.lineGroup.includes('不用')) {
         let httpMatch = trip.lineGroup.match(/https?:\/\/[^\s]+/);
@@ -307,7 +284,7 @@ let monthKey = "待定行程";
 
             <div class="action-col">
               <a href="${trip.link}" target="_blank" class="btn btn-secondary">🔍 行程</a>
-              <a href="mailto:${trip.contact}?subject=詢問達和內部旅遊資訊：${trip.shortTitle}" class="btn ${btnClass}">${btnText}</a>
+              <a href="${inquireHref}" ${inquireTarget} class="btn ${btnClass}">${btnText}</a>
               ${lineBtnHtml}
             </div>
           </div>
